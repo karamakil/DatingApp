@@ -12,6 +12,7 @@ namespace DatingApp.API.Entities
             {
                 return ctx.Users.ToList();
             }
+            
         }
     }
 }
