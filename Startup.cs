@@ -30,8 +30,8 @@ namespace DatingApp.API
             services.AddDbContext<DataContext>(x => 
             x.UseSqlServer(_Config.GetConnectionString("DefaultConnection"))
             );
-
             services.AddControllers();
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,12 +46,15 @@ namespace DatingApp.API
 
             app.UseRouting();
 
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
         }
     }
 }
